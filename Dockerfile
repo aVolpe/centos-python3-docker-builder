@@ -4,14 +4,16 @@ MAINTAINER Arturo Volpe <arturovolpe@gmail.com>
 ENV PYTHON_VERSION 3.6.2
 
 RUN yum update -y &&\
-    yum install yum-utils curl -y &&\
+    yum install yum-utils curl make -y &&\
     yum-builddep python -y &&\
-    curl -O https://www.python.org/ftp/python/$PYTHON_VERSION/Python-$PYTHON_VERSION.tgz && \
-    tar xf Python-$PYTHON_VERSION.tgz && \
-    python Python-$PYTHON_VERSION && \
+    yum clean all
+
+RUN curl -O https://www.python.org/ftp/python/${PYTHON_VERSION}/Python-${PYTHON_VERSION}.tgz &&\
+    tar xf Python-${PYTHON_VERSION}.tgz && \
+    cd Python-${PYTHON_VERSION} && \
     ./configure && \
     make && \
     make install &&\
-    yum clean all
+    cd .. &&\
+    rm -rf Python*
 
-RUN python3 --version
