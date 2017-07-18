@@ -21,4 +21,7 @@ RUN curl "https://bootstrap.pypa.io/get-pip.py" -o "get-pip.py" &&\
     python get-pip.py
 
 
+RUN yum update -y &&\
+    yum install rpm-build -y
+
 RUN python --version && pip --version
