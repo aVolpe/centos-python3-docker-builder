@@ -17,3 +17,8 @@ RUN curl -O https://www.python.org/ftp/python/${PYTHON_VERSION}/Python-${PYTHON_
     cd .. &&\
     rm -rf Python*
 
+RUN curl "https://bootstrap.pypa.io/get-pip.py" -o "get-pip.py" &&\
+    python get-pip.py
+
+
+RUN python --version && pip --version
