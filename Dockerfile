@@ -22,6 +22,8 @@ RUN curl "https://bootstrap.pypa.io/get-pip.py" -o "get-pip.py" &&\
 
 
 RUN yum update -y &&\
-    yum install rpm-build -y
+    yum install rpm-build -y &&\
+    yum install python-devel -y &&\
+    yum clean all
 
 RUN python --version && pip --version
